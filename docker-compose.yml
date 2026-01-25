@@ -1,0 +1,29 @@
+services:
+  app:
+    container_name: courier_backend
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mongodb_container
+    networks:
+      - courier_network
+
+  mongodb_container:
+    image: mongo:latest
+    container_name: courier_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - courier_network
+
+volumes:
+  mongo_data:
+
+networks:
+  courier_network:
+    driver: bridge

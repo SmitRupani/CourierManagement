@@ -4,13 +4,13 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://ritesh:1qaz2wsx3edc4rfv@couriermanagement.0qq1z1f.mongodb.net/courier_db?retryWrites=true&w=majority&appName=courierManagement
+      uri: ${MONGO_URI}
 
   mail:
     host: smtp.gmail.com
     port: 587
-    username: accuwu381@gmail.com
-    password: ygrkwixxheoeygjq
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -19,5 +19,5 @@ spring:
             enable: true
 
 jwt:
-  secret: Y291cmllcm1hbmFnZW1lbnRzZWNyZXRrZXlmb3Jqd3R0b2tlbmdlbmVyYXRpb24=
-  expiration: 86400000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:86400000}

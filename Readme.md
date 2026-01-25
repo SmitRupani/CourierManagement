@@ -87,3 +87,22 @@ Every status change in the system follows this automated path:
 - **Communication**: Spring Mail (SMTP Support)
 - **Validation**: Jakarta Validation API
 - **Documentation**: Swagger/OpenAPI (Optional)
+
+## 5. Running with Docker (Recommended)
+
+This project uses a **Hermetic Build** process. You do not need Java or Maven installed on your machine to run it, only Docker.
+
+### Prerequisites
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+### Setup
+1. Clone the repository.
+2. Create a `.env` file in the root directory (refer to `.env.example`)
+
+### Run
+To start the backend and the database
+```bash
+docker compose up --build
+```
+
+The API will be available at `http://localhost:8080/api/v1`
