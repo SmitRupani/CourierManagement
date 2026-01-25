@@ -16,6 +16,7 @@ public class CourierPackage {
     private String trackingNumber;
 
     private String userId;
+    private String assignedCourierId;
 
     private SenderDetails sender;
     private ReceiverDetails receiver;
@@ -71,6 +72,14 @@ public class CourierPackage {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAssignedCourierId() {
+        return assignedCourierId;
+    }
+
+    public void setAssignedCourierId(String assignedCourierId) {
+        this.assignedCourierId = assignedCourierId;
     }
 
     public SenderDetails getSender() {

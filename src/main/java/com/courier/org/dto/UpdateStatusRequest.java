@@ -11,15 +11,24 @@ public class UpdateStatusRequest {
 
     private String remarks;
     private String location;
+    private String otp;
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 
     // Added getter/setter:
-public String getLocation() {
-    return location;
-}
+    public String getLocation() {
+        return location;
+    }
 
-public void setLocation(String location) {
-    this.location = location;
-}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public UpdateStatusRequest() {
     }

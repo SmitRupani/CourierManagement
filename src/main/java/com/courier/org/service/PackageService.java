@@ -121,16 +121,19 @@ public class PackageService {
         return PackageResponse.fromEntity(saved);
     }
 
-    public PackageResponse updateStatus(String id, PackageStatus status, String location, String remarks) {
+    public PackageResponse updateStatus(String id, PackageStatus status, String location, String remarks, String otp) {
         CourierPackage pkg = packageRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Package not found with id: " + id));
 
-        pkg.setStatus(status);
-        pkg.setUpdatedAt(LocalDateTime.now());
-
         if (status == PackageStatus.DELIVERED) {
+            if (pkg.getDeliveryOtp() == null || !pkg.getDeliveryOtp().equals(otp)) {
+                throw new RuntimeException("Invalid or missing Delivery OTP. Verification failed.");
+            }
             pkg.setDeliveredAt(LocalDateTime.now());
         }
+
+        pkg.setStatus(status);
+        pkg.setUpdatedAt(LocalDateTime.now());
 
         CourierPackage saved = packageRepository.save(pkg);
         createTrackingEvent(saved, location, remarks);
