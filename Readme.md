@@ -44,6 +44,10 @@ Every status change in the system follows this automated path:
 
 ## 3. API Structure
 
+**Live Interactive Documentation:**
+> Once the application is running, access the Swagger UI to test endpoints directly in your browser:
+> [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
 ### 🔐 Authentication (`/api/v1/auth`)
 
 | Method | Endpoint    | Access | Description                               |
@@ -86,7 +90,7 @@ Every status change in the system follows this automated path:
 - **Security**: Spring Security + JJWT
 - **Communication**: Spring Mail (SMTP Support)
 - **Validation**: Jakarta Validation API
-- **Documentation**: Swagger/OpenAPI (Optional)
+- **Documentation**: Swagger/OpenAPI (Swagger UI)
 
 ## 5. Running with Docker (Recommended)
 
@@ -105,4 +109,5 @@ To start the backend and the database
 docker compose up --build
 ```
 
-The API will be available at `http://localhost:8080/api/v1`
+- API Base URL: `http://localhost:8080/api/v1`
+- Swagger UI: `http://localhost:8080/swagger-ui/index.html`
