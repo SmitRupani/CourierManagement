@@ -102,6 +102,7 @@ public class PackageController {
     public ResponseEntity<PackageResponse> updateStatus(
             @PathVariable String id,
             @Valid @RequestBody UpdateStatusRequest request) {
-        return ResponseEntity.ok(packageService.updateStatus(id, request.getStatus()));
-    }
+return ResponseEntity
+        .ok(packageService.updateStatus(id, request.getStatus(), request.getLocation(), request.getRemarks())); 
+       }
 }

@@ -1,6 +1,7 @@
 package com.courier.org.dto;
 
 import com.courier.org.model.PackageStatus;
+
 import jakarta.validation.constraints.NotNull;
 
 public class UpdateStatusRequest {
@@ -9,6 +10,16 @@ public class UpdateStatusRequest {
     private PackageStatus status;
 
     private String remarks;
+    private String location;
+
+    // Added getter/setter:
+public String getLocation() {
+    return location;
+}
+
+public void setLocation(String location) {
+    this.location = location;
+}
 
     public UpdateStatusRequest() {
     }
