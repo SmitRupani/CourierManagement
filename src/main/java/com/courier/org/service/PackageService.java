@@ -17,9 +17,12 @@ import java.util.stream.Collectors;
 public class PackageService {
 
     private final PackageRepository packageRepository;
+    private final com.courier.org.repository.TrackingEventRepository trackingEventRepository;
 
-    public PackageService(PackageRepository packageRepository) {
+    public PackageService(PackageRepository packageRepository,
+            com.courier.org.repository.TrackingEventRepository trackingEventRepository) {
         this.packageRepository = packageRepository;
+        this.trackingEventRepository = trackingEventRepository;
     }
 
     public PackageResponse createPackage(CreatePackageRequest request, String userId) {
@@ -35,6 +38,7 @@ public class PackageService {
         pkg.setStatus(PackageStatus.CREATED);
 
         CourierPackage saved = packageRepository.save(pkg);
+        createTrackingEvent(saved, "Package created");
         return PackageResponse.fromEntity(saved);
     }
 
@@ -99,7 +103,7 @@ public class PackageService {
         return PackageResponse.fromEntity(saved);
     }
 
-    public PackageResponse updateStatus(String id, PackageStatus status) {
+    public PackageResponse updateStatus(String id, PackageStatus status, String location, String remarks) {
         CourierPackage pkg = packageRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Package not found with id: " + id));
 
@@ -111,7 +115,22 @@ public class PackageService {
         }
 
         CourierPackage saved = packageRepository.save(pkg);
+        createTrackingEvent(saved, location, remarks);
         return PackageResponse.fromEntity(saved);
+    }
+
+    private void createTrackingEvent(CourierPackage pkg, String remarks) {
+        createTrackingEvent(pkg, null, remarks);
+    }
+
+    private void createTrackingEvent(CourierPackage pkg, String location, String remarks) {
+        com.courier.org.model.TrackingEvent event = new com.courier.org.model.TrackingEvent(
+                pkg.getId(),
+                pkg.getTrackingNumber(),
+                pkg.getStatus(),
+                location,
+                remarks);
+        trackingEventRepository.save(event);
     }
 
     public PackageResponse cancelPackage(String id, String userId) {
