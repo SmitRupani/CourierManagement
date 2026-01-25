@@ -45,8 +45,10 @@ Every status change in the system follows this automated path:
 ## 3. API Structure
 
 **Live Interactive Documentation:**
-> Once the application is running, access the Swagger UI to test endpoints directly in your browser:
-> [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+> Once the application is running:
+> - access the Swagger UI to test endpoints directly in your browser: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+> - access the observability metrics on: [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
+
 
 ### 🔐 Authentication (`/api/v1/auth`)
 
@@ -91,6 +93,7 @@ Every status change in the system follows this automated path:
 - **Communication**: Spring Mail (SMTP Support)
 - **Validation**: Jakarta Validation API
 - **Documentation**: Swagger/OpenAPI (Swagger UI)
+- **Observability**: Spring Actuator
 
 ## 5. Running with Docker (Recommended)
 
@@ -111,3 +114,4 @@ docker compose up --build
 
 - API Base URL: `http://localhost:8080/api/v1`
 - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+- Actuator Status: `http://localhost:8080/actuator/health`
