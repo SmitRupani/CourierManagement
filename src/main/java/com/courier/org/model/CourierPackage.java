@@ -32,12 +32,21 @@ public class CourierPackage {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deliveredAt;
+    private String deliveryOtp;
 
     public CourierPackage() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.status = PackageStatus.CREATED;
         this.paid = false;
+    }
+
+    public String getDeliveryOtp() {
+        return deliveryOtp;
+    }
+
+    public void setDeliveryOtp(String deliveryOtp) {
+        this.deliveryOtp = deliveryOtp;
     }
 
     public String getId() {
