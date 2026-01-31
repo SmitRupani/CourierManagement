@@ -24,6 +24,9 @@ public class EmailService {
             message.setSubject(subject);
             message.setText(body);
             mailSender.send(message);
+        } catch (org.springframework.mail.MailException e) {
+            System.err.println("Failed to send email to " + to + ": " + e.getMessage());
+            // In a college project, we can proceed even if mail fails as long as we log it
         } finally {
             // Always log the notification locally for college project demo
             notificationRepository.save(new com.courier.org.model.Notification(to, subject, body));

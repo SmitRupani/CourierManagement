@@ -35,3 +35,6 @@ Task.MD
 
 .env
 .env.local
+
+# Logs
+*.log
