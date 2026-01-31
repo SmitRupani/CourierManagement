@@ -1,0 +1,23 @@
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+logs/
+
+# Database
+mongo-data/
+mongo.log
+
+# Build artifacts
+target/
+build/
+dist/
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
